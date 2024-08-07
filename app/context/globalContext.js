@@ -1,6 +1,6 @@
 "use client"
 
-import React, { createContext, useContext, useEffect, useState } from "react"
+import React, { createContext, use, useContext, useEffect, useState } from "react"
 import axios from "axios";
 
 const GlobalContext = createContext();
@@ -11,6 +11,8 @@ export const GlobalContextProvider = ( {children} ) => {
 
   const [airQuality, setAirQuality] = useState({});
   const [fiveDayForecast, setFiveDayForecast] = useState({});
+
+  const [uvIndex, setUvIndex] = useState({});
 
   const fetchForecast = async () => {
     try {
@@ -36,17 +38,30 @@ export const GlobalContextProvider = ( {children} ) => {
     try {
       const res = await axios.get("api/fiveday");
 
-      console.log("five day forecast data: ", res.data);
+      console.log("Five Day Forecast", res.data);
       setFiveDayForecast(res.data);
     } catch (error) {
       console.log("Error fetching five day forecast data: ", error.message);
     }
   };
 
+  //fetch uv data
+  const fetchUvIndex = async () => {
+    try {
+      const res = await axios.get("/api/uv")
+
+      setUvIndex(res.data);
+      console.log("Uv Index", res.data);
+    } catch (error) {
+      console.log("Error fteching the uv data: ", error);
+    }
+  }
+
   useEffect(() => {
     fetchForecast();
     fetchAirQuality();
     fetchFiveDayForecast();
+    fetchUvIndex();
   }, []);
 
   return (
@@ -54,6 +69,7 @@ export const GlobalContextProvider = ( {children} ) => {
       forecast,
       airQuality,
       fiveDayForecast,
+      uvIndex,
     }}>
       <GlobalContextUpdate.Provider>{children}</GlobalContextUpdate.Provider>
     </GlobalContext.Provider>
