@@ -24,8 +24,10 @@ function AirPollution() {
   const airQualityIndex = airQuality.list[0].main.aqi*10
 
   const filteredIndex = airQualityIndexText.find((item) => {
-    return item.rating === airQualityIndex
+    return item.rating >= airQualityIndex
   })
+
+  console.log(airQualityIndex)
 
   return (
     <div className='air-pollution pt-6 px-4 h-[12rem] border rounded-lg flex flex-col gap-8 dark:bg-dark-gray shadow-sm dark:shadow-none col-span-full sm-2:col-span-2 md:col-span-2 xl:col-span-2'>
@@ -37,6 +39,7 @@ function AirPollution() {
        max={100}
        className='progress'
       />
+      
       <p>Air Quality is {filteredIndex?.description}.</p>
     </div>
   )
