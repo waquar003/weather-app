@@ -53,9 +53,9 @@ export default function Home() {
       </div>
 
 
-      <footer className="flex justify-center pb-6">
+      <footer className="py-4 flex justify-center pb-8">
         <p className="footer-text text-sm flex items-center gap-1">
-          Made by Waquar
+          Made by <span className="text-green-300 font-bold">Waquar Ahmad</span>
         </p>
       </footer>
     </main>
