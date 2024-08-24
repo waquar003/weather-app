@@ -44,3 +44,7 @@ export const formatNumber = (num: number) => {
     return num;
   }
 }
+
+export const unixToDay = (unix: number) => {
+  return moment.unix(unix).format("dddd")
+}

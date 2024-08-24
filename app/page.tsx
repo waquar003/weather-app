@@ -1,6 +1,7 @@
 import AirPollution from "./Components/AirPollution/AirPollution";
 import DailyForecast from "./Components/DailyForecast/DailyForecast";
 import FeelsLike from "./Components/FeelsLike/FeelsLike";
+import FiveDayForecast from "./Components/FiveDayForecast/FiveDayForecast";
 import Humidity from "./Components/Humidity/Humidity";
 import Mapbox from "./Components/Mapbox/Mapbox";
 import Navbar from "./Components/Navbar";
@@ -20,6 +21,7 @@ export default function Home() {
       <div className="pb-4 flex flex-col gap-4 md:flex-row">
         <div className="flex flex-col gap-4 w-full min-w-[18rem] md:w-[35rem]">
           <Temperature />
+          <FiveDayForecast />
         </div>
         <div className="flex flex-col w-full">
           <div className="instrument grid h-full gap-4 col-span-full sm-2:col-span-2 lg:grid-cols-3 xl:grid-cols-4">
@@ -55,7 +57,15 @@ export default function Home() {
 
       <footer className="py-4 flex justify-center pb-8">
         <p className="footer-text text-sm flex items-center gap-1">
-          Made by <span className="text-green-300 font-bold">Waquar Ahmad</span>
+          Made by 
+          <a 
+            href="https://linktr.ee/ahmadwaquar"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-green-300 font-bold"
+          >
+            Waquar Ahmad
+          </a>
         </p>
       </footer>
     </main>
