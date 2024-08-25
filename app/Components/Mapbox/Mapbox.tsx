@@ -18,7 +18,7 @@ function FlyToActiveCity({ activeCityCoords }: { activeCityCoords: { lat: number
         duration: 1.5,
       };
 
-      map.flyTo([activeCityCoords.lat, activeCityCoords.lon],)
+      map.flyTo([activeCityCoords.lat, activeCityCoords.lon],zoomLev, flyToOptions);
     }
   }, [activeCityCoords, map]);
 
@@ -35,13 +35,15 @@ function Mapbox() {
     return <Skeleton className='h-[12rem] w-full' />
   }
 
+  // console.log(activeCityCoords)
+
   return <div className="flex-1 basis-[50%] border rounded-lg">
     <MapContainer
       center={[activeCityCoords.lat, activeCityCoords.lon]}
       zoom={13}
       scrollWheelZoom={false}
       className="rounded-lg m-4"
-      style={{ height: "calc(100% - 2rem", width: "calc(100% - 2rem"}}
+      style={{ height: "calc(100% - 2rem)", width: "calc(100% - 2rem)"}}
     >
       <TileLayer 
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

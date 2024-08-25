@@ -9,14 +9,14 @@ import { UvProgress } from '../UvProgress/UvProgress';
 function UvIndex() {
 
   const { uvIndex } = useGlobalContext();
-  console.log(uvIndex);
+  // console.log(uvIndex);
   
   if (!uvIndex || !uvIndex.daily) {
     return <Skeleton className='h-[12rem] w-full' />
   }
 
   const { daily } = uvIndex;
-  console.log(daily);
+  // console.log(daily);
   
   const { uv_index_clear_sky_max, uv_index_max } = daily;
 

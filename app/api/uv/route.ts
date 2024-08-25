@@ -1,9 +1,10 @@
-import { NextResponse } from "next/server"
+import { NextRequest, NextResponse } from "next/server"
 
-export async function GET(req:NextResponse) {
+export async function GET(req:NextRequest) {
   try {
-    const lat = 25.4166
-    const lon = 85.1666 
+    const searchParams = req.nextUrl.searchParams;
+    const lat = searchParams.get('lat');
+    const lon = searchParams.get('lon');
 
     const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m&daily=uv_index_max,uv_index_clear_sky_max`
 

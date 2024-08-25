@@ -1,3 +1,5 @@
+"use client"
+
 import AirPollution from "./Components/AirPollution/AirPollution";
 import DailyForecast from "./Components/DailyForecast/DailyForecast";
 import FeelsLike from "./Components/FeelsLike/FeelsLike";
@@ -12,9 +14,22 @@ import Temperature from "./Components/Temperature/Temperature";
 import UvIndex from "./Components/UvIndex/UvIndex";
 import Visibility from "./Components/Visibility/Visibility";
 import Wind from "./Components/Wind/Wind";
+import { useGlobalContextUpdate } from "./context/globalContext";
 import { defaultStates } from "./utils/defaultStates";
 
 export default function Home() {
+
+  const { setActiveCityCoords } = useGlobalContextUpdate();
+
+  const getClickedCityCords = (lat: number, lon: number) => {
+    setActiveCityCoords([lat, lon]);
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <main className="mx-[1rem] lg:mx-[2rem] xl:mx-[6rem] 2xl:mx-[16rem] m-auto">
       <Navbar />
@@ -44,9 +59,16 @@ export default function Home() {
               </h2>
               <div className="flex flex-col gap-4">
                 {defaultStates.map((state, index) => {
-                  return <div key={index} className="border rounded-lg cursor-pointer dark:bg-dark-grey shadow-sm dark:shadow-none">
+                  return (
+                  <div
+                    key={index}
+                    className="border rounded-lg cursor-pointer dark:bg-dark-grey shadow-sm dark:shadow-none"
+                    onClick={() => {
+                      getClickedCityCords(state.lat, state.lon); 
+                    }}
+                  >
                     <p className="px-6 py-4">{state.name}</p>
-                  </div>
+                  </div>)
                 })}
               </div>
             </div>

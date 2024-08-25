@@ -15,7 +15,7 @@ function Population() {
     return <Skeleton className='h-[12rem] w-full' />;
   }
 
-  console.log(city);
+  // console.log(city);
   
 
   return (
