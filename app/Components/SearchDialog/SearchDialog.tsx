@@ -44,10 +44,11 @@ function SearchDialog() {
               <p className='p-2 text-sm text-muted-foreground'>Suggestions</p>
 
               {geoCodedList?.length === 0 || (!geoCodedList && <p>No Results</p>)}
-
+              
               {geoCodedList &&
                 geoCodedList.map((item: {name: string, country: string, state: string, lat: number, lon: number }, index: number) => {
-                const { country, state, name} = item;
+                  const { country, state, name} = item;
+                  // console.log(item)
                 return (
                   <li
                     key={index}

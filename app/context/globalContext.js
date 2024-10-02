@@ -50,19 +50,16 @@ export const GlobalContextProvider = ( {children} ) => {
       console.log("Error fetching five day forecast data: ", error.message);
     }
   };
-
   //geocoded list
   const fetchGeoCodedList = async (search) => {
-    console.log(search);
     try {
       const res = await axios.get(`/api/geocoded?search=${search}`)
 
       setGeoCodedList(res.data);
-      // console.log("Geocoded List", res.data);
     } catch (error) {
       console.log("Error fetching geocoded list: ", error.message);
     }
-  };
+  }
 
   //fetch uv data
   const fetchUvIndex = async (lat, lon) => {
@@ -75,11 +72,11 @@ export const GlobalContextProvider = ( {children} ) => {
       console.log("Error fteching the uv data: ", error);
     }
   }
-
+  
   //handle inputs
+   
   const handleInput = (event) => {
     setInputValue(event.target.value);
-
     if (event.target.value === "") {
       setGeoCodedList(defaultStates);
     }
@@ -92,11 +89,11 @@ export const GlobalContextProvider = ( {children} ) => {
     }, 500)
 
     if (inputValue) {
-      debouncedFetch(inputValue);
+      debouncedFetch(inputValue); 
     }
 
     //cleanup
-    return () => debouncedFetch.cancel();
+    return () => debouncedFetch.cancel(); 
   }, [inputValue])
 
   useEffect(() => {
